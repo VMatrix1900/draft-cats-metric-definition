@@ -4,7 +4,7 @@ title: "CATS metric Definition"
 abbrev: "CATS Metric"
 category: info
 
-docname: draft-ysl-cats-metric-definition-00
+docname: draft-ysl-cats-metric-definition-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
