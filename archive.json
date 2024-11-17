@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-14T00:36:10.449632+00:00",
+  "timestamp": "2024-11-17T00:41:00.207110+00:00",
   "repo": "VMatrix1900/draft-cats-metric-definition",
   "labels": [
     {
@@ -47,8 +47,104 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "IETF121",
+      "description": "Tickets generated from IETF 121 conversations",
+      "color": "FBCA04"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOMTaH-s6ebj93",
+      "title": "On the need for storage metrics",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/1",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "IETF121"
+      ],
+      "body": "Explain why storage metrics are needed. If they are required, we should give an example. (This was asked by Me during IETF 121)",
+      "createdAt": "2024-11-14T08:37:10Z",
+      "updatedAt": "2024-11-14T09:00:40Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOMTaH-s6ebkmE",
+      "title": "On other routing metrics",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/2",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "IETF121"
+      ],
+      "body": "Explain if other \"routing metrics\" mentioned in IDR docs are relevant or if they can be referenced. (This was asked by Ketan during IETF 121.)",
+      "createdAt": "2024-11-14T08:38:34Z",
+      "updatedAt": "2024-11-14T09:00:41Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOMTaH-s6eblsK",
+      "title": "On L0 metrics for decision making",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/3",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "IETF121"
+      ],
+      "body": "Should some of the L0 metrics be used for decision making?(This was asked from Haomian during IETF 121)",
+      "createdAt": "2024-11-14T08:39:55Z",
+      "updatedAt": "2024-11-14T09:00:41Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOMTaH-s6ebqsh",
+      "title": "On the normalization of L2 metrics",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/4",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "IETF121"
+      ],
+      "body": "Joel wrote on the mailing list:\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/cats/_AR5_zq4eWs0a8sNfa7d4nvNRkg/\r\n\r\n> I have  a question regarding section 3.3 of this draft.  That section \r\n> defines the L2 metrics, which I hope are the ones we will actually \r\n> communicate from servers to ingress edge devices.  The text says that \r\n> each service may have their own normalization method.  That makes \r\n> sense.  There was a question raised during the meeting that is separate \r\n> from that text, but related to it.  How do we envision independent \r\n> implementors of a given service will know how to normalize their metrics \r\n> such that the ingress edge device can compare the normalized metrics.  \r\n> (I think it is achievable, I am just missing how we will do so.)",
+      "createdAt": "2024-11-14T08:41:59Z",
+      "updatedAt": "2024-11-14T09:00:41Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOMTaH-s6ebvZJ",
+      "title": "On energy and security metrics",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/5",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "IETF121"
+      ],
+      "body": "Should some of security and green metrics be scoped whithin CATS metric? (This was asked by Julien during IETF 121)",
+      "createdAt": "2024-11-14T08:45:51Z",
+      "updatedAt": "2024-11-14T09:00:42Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": []
 }
