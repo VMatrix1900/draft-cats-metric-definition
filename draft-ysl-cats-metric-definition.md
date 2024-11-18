@@ -70,15 +70,11 @@ This document defines a set of computing metrics used for Computing-Aware Traffi
 
 # Introduction
 
-Many computing services are deployed in a distributed way. In such deployment mode, multiple service instances are deployed in multiple service sites to provide equivalent service to end users. In order to provide better service to end users, a framework called Computing-Aware Traffic Steering(CATS) {{!I-D.ietf-cats-framework}} is defined.
+Service providers are deploying computing capabilities across the network for hosting applications such as distributed AI workloads, AR/VR and driverless vehicles, among others. In these deployments, multiple service instances are replicated across various sites to ensure sufficient capacity for maintaining the required Quality of Experience (QoE) expected by the application.  To support the selection of these instances, a framework called Computing-Aware Traffic Steering (CATS) is introduced in {{!I-D.ietf-cats-framework}}.
 
-CATS is a traffic engineering approach that takes into account the dynamic nature of computing resources and network state to optimize service-specific traffic forwarding towards a given service contact instance{{!I-D.ietf-cats-framework}}. Various metrics may be used to enforce such computing-aware traffic steering policies.
+CATS is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. To achieve this, CATS components (C-PS, C-Forwarders, etc.) require performance metrics for both communication and compute resources. Since these resources are deployed by multiple providers, standardized metrics are essential to ensure interoperability and enable precise traffic steering decisions, thereby optimizing resource utilization and enhancing overall system performance.
 
-To steer traffic to a service contact instance, CATS components(C-PS, C-Forwarders, etc.) need information of the service instance's computing status.  In addition to network-related metrics, a common definition of relevant computing metrics is essential for effective coordination between network devices and compute instances. Standardized metrics enable precise traffic steering decisions that optimize resource utilization and improve overall system performance.
-
-Various considerations for metric definition are proposed in {{?I-D.du-cats-computing-modeling-description}}, which are useful in defining computing metrics.
-
-Based on the considerations defined in {{?I-D.du-cats-computing-modeling-description}}, this document defines relevant computing metrics for CATS by categorizing the metrics into three levels based on their complexity and granularity details.
+Various considerations for metric definition are proposed in {{?I-D.du-cats-computing-modeling-description}}, which are useful for defining computing metrics. This document categorizes the relevant computing metrics for CATS into three levels based on their complexity and granularity, following the considerations outlined in {{?I-D.du-cats-computing-modeling-description}}. In the current document, we leverage this preliminary work to formalize a definition of resource metrics for CATS.
 
 # Conventions and Definitions
 
@@ -94,67 +90,72 @@ This document uses the following terms defined in {{!I-D.ietf-cats-framework}}:
 
 # Definition of Metrics
 
-Definition and usage of specific metrics are related to the intended use case. However, when considering disseminating compute metrics to network devices, appropriate categorization and abstraction of CATS metrics is required in order to avoid introducing extra complexity into the network.
+Introducing a definition of metrics necessitates balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the protocol. Conversely, if the metrics are too coarse-grained, they may lack the necessary information to make informed decisions. To ensure scalability while providing sufficient detail for effective decision-making, we propose a definition of metrics that incorporates three levels of abstraction:
 
-This document defines three abstract metric levels to meet different requirements use cases listed in {{!I-D.ietf-cats-usecases-requirements}}:
+- **Level 0 (L0): Raw metrics.** These metrics are presented without abstraction, with each metric using its own unit and format as defined by the underlying resource.
 
-- Level 0 (L0): Raw metrics. The metrics are not abstracted, so different metrics use their own unit and format as used within a compute orchestration domain.
+- **Level 1 (L1): Normalized metrics in categories.** These metrics are derived by aggregating L0 metrics into multiple categories, such as network, computing, and storage. Each category is summarized with a single L1 metric by normalizing it into a value within a defined range of scores.
 
-- Level 1 (L1): Normalized metrics in categories. The metrics are categorized into multiple dimensions, such as network, computing, and storage. Each category metric is normalized into a value or a set of values with a range of scores.
-
-- Level 2 (L2): Fully normalized metric. Metrics are normalized into a single value. The category information or raw metrics information cannot be interpreted from the value directly.
+- **Level 2 (L2): Fully normalized metric.** These metrics are derived by aggregating all the L1 metrics into a single L2 metric, which is then normalized into a value within a defined range of scores.
 
 ## Level 0: Raw Metrics
 
 Level 0 metrics encompass detailed, raw metrics, including but not limit to:
 
-- CPU: Base Frequency, Number of Cores,  Boosted Frequency, Memory Bandwidth, Memory Size, Utilization Ratio, Core Utilization Ratio, Power Consumption.
+- CPU: Clock Frequency, number of cores, boosted frequency, memory bandwidth, memory size, utilization ratio, core utilization ratio, Power Consumption.
 - GPU: Frequency, Number of Render Unit, Memory Bandwidth, Memory Size, Memory Utilization Ratio, Core Utilization Ratio, Power Consumption.
 - NPU: Computing Power, Utlization Ratio, Power Consumption.
 - Network: Bandwidth, Capacity, Throughput, TXBytes, RXBytes, HostBusUtilization.
 - Storage: Available Space, Read Speed, Write Speed.
 - Delay: Time taken to process a request.
 
-Detailed information of a metric in L0 can be encoded into Application Programming Interface(API)(e.g., Restful API), and different services have their own metrics with different information elements. L0 metrics are used widely in IT systems.
+L0 metrics can be encoded into an Application Programming Interface (API), such as a RESTful API, and can be solution-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).
 
-Regarding network related raw metrics, IPPM WG has defined many types of metrics in {{performance-metrics}}. {{?RFC9439}} also defines many metrics of packet performance and Throughput/Bandwidth. Regarding computing metrics, {{?I-D.rcr-opsawg-operational-compute-metrics}} lists a set of cloud resource metrics.
+Regarding network-related information, the IPPM WG has defined various types of metrics in {{performance-metrics}}. Additionally, in {{?RFC9439}}, the ALTO WG has introduced an extended set of metrics related to packet performance and throughput/bandwidth. For compute metrics, {{?I-D.rcr-opsawg-operational-compute-metrics}} lists a set of cloud resource metrics.
 
 ## Level 1: Normalized Metrics in Categories
 
-The metrics in L1 are categorized into different categories, and abstraction will be applied to each category. L0 raw metrics can be classified into multiple categories, such as computing, networking, storage, and delay. In each category, the metrics are normalized into a value that present the state of a resource. Potential categories are shown below:
+L1 metrics are organized into distinct categories, such as computing, networking, storage, and delay. Each L0 metric is classified into one of these categories. Within each category, a single L1 metric is computed using an *aggregation function* and normalized to a unitless score that represents the performance of a resource according to that category. Potential categories include:
 
-- Computing: A normalized value generating from the computing related L0 metrics, such as CPU/GPU/NPU L0 metrics
-- Networking: A normalized value generating from the network related L0 metrics.
-- Storage: A normalized value generating from the storage L0 metrics.
-- Delay: A normalized value generating from computing/networking/storage metrics, reflecting the processing delay of a request.
+- **Computing:** A normalized value derived from computing-related L0 metrics, such as CPU, GPU, and NPU metrics.
+
+- **Networking:** A normalized value derived from network-related L0 metrics.
+
+- **Storage:** A normalized value derived from storage-related L0 metrics.
+
+- **Delay:** A normalized value derived from computing, networking, and storage metrics, reflecting the end-to-end processing delay of a request.
 
 Editor note: detailed categories can be updated according to the CATS WG discussion.
 
-The L0 metrics, such as the ones defined in {{performance-metrics}} ,{{?RFC9439}} and {{?I-D.rcr-opsawg-operational-compute-metrics}} can be categorized into above categories. Each category will use its own method(weighted summary, etc.) to generate the normalized value. In this way, the protocol only care about the metric categories and its normalized value, and avoid to process the detailed metrics.
-
+The L0 metrics, such as those defined in {{performance-metrics}}, {{?RFC9439}}, and {{?I-D.rcr-opsawg-operational-compute-metrics}}, can be categorized into the aforementioned categories. Each category will employ its own aggregation function (e.g., weighted summary) to generate the normalized value. This approach allows the protocol to focus solely on the metric categories and their normalized values, thereby avoiding the need to process solution-specific detailed metrics.
 
 ## Level 2: Fully Normalized Metric.
 
-L2 metric is a one-dimensional value derived from a weighted sum of L1 metrics or from L0 metrics directly. Services may have their own normalization method which might use different metrics with different weight. Some implementations may support configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the affection from the L1 or L0 metrics.
+The L2 metric is a single score value derived from L1 metrics using an aggregation function. Different implementations may employ different aggregation functions to characterize the overall performance of the underlying compute and communication resources. The definition of the L2 metric simplifies the complexity of collecting and distributing numerous lower-level metrics by consolidating them into a single, unified score.
 
-The definition of L2 metric simplifies the complexity of transmission and management of multiple metrics by consolidating them into a single, unified measure.
+TODO: Some implementations may support configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the affection from the L1 or L0 metrics.
 
 Figure 1 shows the logic of metrics in Level 0, Level 1, and Level 2.
 
+<!-- Comment JRG: I would like to suggest some changes to this diagram. Seems like M1 is repeated at level 0 and level 1, same for M2, M3, so this can be confusing. Also the words Raw are repeated for all boxes, which seems redudant. Same for the word Category. Also the edges seem unidirectional, from bottom to top, so we can add an arrow to reflect the direction. I am suggesting the following adjustments: -->
+
+
 ~~~
-                        +--------------+
-Level 2       +---------| Normalized M |------------+
-              |         +--------------+            |
-              |                |                    |
-              |                |  Normalizing       |
-         +-------------+    +------------+     +------------+
-Level 1  | Category M1 |    | Category M2|     | Category M3|  ...
-         +-------------+    +------------+     +------------+
-               | |               |                    | |
-               | |               |Normalizing         | |
-        +------+ +------+     +------+         +------+ +------+
-Level 0 |Raw M1| |Raw M2|.....|Raw M3|.........|Raw M4| |Raw M5| ...
-        +------+ +------+     +------+         +------+ +------+
+                                       +--------+
+                            L2 Metric: |   M2   |
+                                       +---^----+
+                                           |
+                         +-----------------+---------------+
+                         |                 |               |
+                     +---+----+        +---+----+      +---+----+
+         L1 Metrics: |  M1-1  |        |  M1-2  |      |  M1-3  | (...)
+                     +---^----+        +---^----+      +----^---+
+                         |                 |                |
+              +--------+-+-------+       +-+-------+        |
+              |        |         |       |         |        |
+           +--+---+ +--+---+ +---+--+ +--+---+ +---+--+  +--+---+
+L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | (...)
+           +------+ +------+ +------+ +------+ +------+  +------+
 
 ~~~
 {: #fig-cats-metric title="Logic of CATS Metrics in levels"}
@@ -163,10 +164,7 @@ Level 0 |Raw M1| |Raw M2|.....|Raw M3|.........|Raw M4| |Raw M5| ...
 
 # Representation of Metrics
 
-A hierarchical view of metrics has been shown in Figure 1. This section includes the detailed representation of metrics.
-
-[RFC9439] gives a good way to show the representation of some network metrics which is used for network capabilities exposure to
-   applications. This document further describes the representation of CATS metrics.
+This section includes the detailed representation of metrics. [RFC9439] gives a good way to show the representation of some network metrics which is used for network capabilities exposure to applications. This document further describes the representation of CATS metrics.
 
 Basically, in each metric level and for each metric, there will be some common fields for representation, including metric type, unit, and precision.  Metric type is a label for network devices to recognize what the metric is. "unit" and "precision" are usually associated with the metric.  How many bits a metric occupies in protocols is also required.
 
