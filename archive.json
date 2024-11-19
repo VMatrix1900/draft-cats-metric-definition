@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-17T00:41:00.207110+00:00",
+  "timestamp": "2024-11-19T00:38:26.827227+00:00",
   "repo": "VMatrix1900/draft-cats-metric-definition",
   "labels": [
     {
@@ -87,9 +87,17 @@
       ],
       "body": "Explain if other \"routing metrics\" mentioned in IDR docs are relevant or if they can be referenced. (This was asked by Ketan during IETF 121.)",
       "createdAt": "2024-11-14T08:38:34Z",
-      "updatedAt": "2024-11-14T09:00:41Z",
+      "updatedAt": "2024-11-18T17:11:43Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "muzixing",
+          "authorAssociation": "NONE",
+          "body": "We have a draft in IDR https://datatracker.ietf.org/doc/html/draft-ll-idr-cats-bgp-extension-00, which defines the solution of using BGP for cats. In the basic mode, it uses the extensions in https://datatracker.ietf.org/doc/html/draft-ietf-idr-5g-edge-service-metadata-24.  5G-edge draft defines a general mechanism with several TLVs. CATS may use some of them but not all. ",
+          "createdAt": "2024-11-18T17:11:42Z",
+          "updatedAt": "2024-11-18T17:11:42Z"
+        }
+      ]
     },
     {
       "number": 3,
@@ -144,7 +152,263 @@
       "updatedAt": "2024-11-14T09:00:42Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOMTaH-s6fGS62",
+      "title": "Unit of metrics in examples.",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/6",
+      "state": "OPEN",
+      "author": "muzixing",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "1. \r\nThough it is example. \r\nWe should specify one data unit/format instead of providing two formats,  See below.\r\n\r\nInteger or FP8, choose one. Also, we might not use GHZ as unit, may use MHZ? so that the format can be an integer?\r\n\r\nBasic fields:\r\n      Metric type: \u201ccompute type_CPU\u201d\r\n      Format: integer, FP8\r\n      Bits occupation: 4 octets\r\nSpecial fields:\r\n      Frequency unit: GHZ\r\n      Compute capabilities unit: FLOPs\r\nSource:\r\n      Direct measurement\r\nStatistics:\r\n      Mean\r\n\r\n\r\nSame for Storage and Network, GB or GB/s seems a too big unit. Better to use a MB\uff0c MB/s to allow the data value as a integer instead of a FP8\uff1f or  we can choose GB, GB/s\uff0c and make the value as a float type. \r\n\r\n2. what is the score in the example of L1 Metric definition ? suggest to delete it. unless we have good reason to have it.\r\n3. same question to L2 metric, why do we have score? \r\n\r\n\r\n\r\n",
+      "createdAt": "2024-11-18T16:56:45Z",
+      "updatedAt": "2024-11-18T16:58:59Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOMTaH-s6fGTwA",
+      "title": "section 4.2.5 needs better wording",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/7",
+      "state": "OPEN",
+      "author": "muzixing",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "[4.2.5. ](https://datatracker.ietf.org/doc/html/draft-ysl-cats-metric-definition-02#section-4.2.5)[Considerations on the Sources of Metrics and the Statistics](https://datatracker.ietf.org/doc/html/draft-ysl-cats-metric-definition-02#name-considerations-on-the-source)\r\nThe sources of L1 metrics is normalized. Based on L0 metrics, service providers design their own algorithms to normalize metrics. For example, assigning different cost values to each raw metric and do summation. L1 metric do not need further statistical values.\r\n\r\nit is confusing to me when reading the above text. We need to rewrite it?",
+      "createdAt": "2024-11-18T16:57:57Z",
+      "updatedAt": "2024-11-18T16:57:57Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOMTaH-s6fJpYt",
+      "title": "No service metrics defined yet",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/9",
+      "state": "OPEN",
+      "author": "luismcontreras",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "By now we are covering resource-related metrics (CPU, storage, etc).\r\n\r\nI wonder if service-related metrics can be also part of the picture. For instance number of sessions, etc.",
+      "createdAt": "2024-11-18T22:31:24Z",
+      "updatedAt": "2024-11-18T22:31:24Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOMTaH-s6fJyGd",
+      "title": "L2 metric: just one aggregated metric or one for compute and one for network?",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/10",
+      "state": "OPEN",
+      "author": "luismcontreras",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "With the current definition of L2 metric, the generation of such L2 metric can only be performed on an element consolidating both network and compute metrics. That is, the C-PS (or the Ingress C-Forwader), according to the current framework definition. It could be maybe more practical if we can consider L2 metrics per domain so that both C-SMA and C-NMA can generate L2 metrics per domain that later on can be consolidated in C-PS (or the Ingress C-Forwader), but avoiding the burden of transmitting all the L1 metrics up to C-PS (or the Ingress C-Forwader). ",
+      "createdAt": "2024-11-18T22:38:56Z",
+      "updatedAt": "2024-11-18T22:38:56Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 8,
+      "id": "PR_kwDOMTaH-s6CR-zR",
+      "title": "JRG: revisision of text up to section 3",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/pull/8",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I made an initial partial revision of the draft, up to Section 3. Please feel free to comment further. I plan to continue reviewing the rest of the sections. Thanks.",
+      "createdAt": "2024-11-18T17:49:05Z",
+      "updatedAt": "2024-11-18T21:41:54Z",
+      "baseRepository": "VMatrix1900/draft-cats-metric-definition",
+      "baseRefName": "main",
+      "baseRefOid": "dd13c0eec3c0e0bc2339bb83565ad11cac9af77d",
+      "headRepository": "giralt/draft-cats-metric-definition",
+      "headRefName": "JRG-rev-20241118",
+      "headRefOid": "f57599dc132a1662883425905a6c89f76c56c55d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOMTaH-s6RpEY1",
+          "commit": {
+            "abbreviatedOid": "f57599d"
+          },
+          "author": "muzixing",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-18T18:59:10Z",
+          "updatedAt": "2024-11-18T18:59:11Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "much better! Thanks.",
+              "createdAt": "2024-11-18T18:59:10Z",
+              "updatedAt": "2024-11-18T18:59:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6RpFjn",
+          "commit": {
+            "abbreviatedOid": "f57599d"
+          },
+          "author": "muzixing",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-18T19:01:27Z",
+          "updatedAt": "2024-11-18T19:01:28Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "also nice, thanks!",
+              "createdAt": "2024-11-18T19:01:28Z",
+              "updatedAt": "2024-11-18T19:01:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6RpGP3",
+          "commit": {
+            "abbreviatedOid": "f57599d"
+          },
+          "author": "muzixing",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "we can merge this PR when address my comment of \" necessitates balancing \"",
+          "createdAt": "2024-11-18T19:03:01Z",
+          "updatedAt": "2024-11-18T19:16:41Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "Introducing a definition of metrics necessitates balancing the following trade-off. necessitates? better to refine this sentence to easy reading.",
+              "createdAt": "2024-11-18T19:03:01Z",
+              "updatedAt": "2024-11-18T19:16:41Z"
+            },
+            {
+              "originalPosition": 35,
+              "body": "I will argue the definition here. L2 can be generated from L0 directly as well? Logical and hierarchical layers of aggregation looks nice, but L1 is not required for L2. is it correct? An implementation can generate a L2 metric from L0 metrics without the L1 metrics ",
+              "createdAt": "2024-11-18T19:07:12Z",
+              "updatedAt": "2024-11-18T19:16:41Z"
+            },
+            {
+              "originalPosition": 84,
+              "body": "Doable. good suggestion.",
+              "createdAt": "2024-11-18T19:13:16Z",
+              "updatedAt": "2024-11-18T19:16:41Z"
+            },
+            {
+              "originalPosition": 81,
+              "body": "much better in reading. Thanks.",
+              "createdAt": "2024-11-18T19:13:37Z",
+              "updatedAt": "2024-11-18T19:16:41Z"
+            },
+            {
+              "originalPosition": 119,
+              "body": "nice figure! Thanks!",
+              "createdAt": "2024-11-18T19:15:33Z",
+              "updatedAt": "2024-11-18T19:16:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6Rp37q",
+          "commit": {
+            "abbreviatedOid": "f57599d"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-18T20:37:55Z",
+          "updatedAt": "2024-11-18T20:37:55Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "Thanks for your comments Chen. \r\n\r\nIs this comment just a question of style? If so, this one may seem better:\r\n\r\n\"Introducing a definition of metrics requires balancing the following trade-off:\"",
+              "createdAt": "2024-11-18T20:37:55Z",
+              "updatedAt": "2024-11-18T20:37:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6Rp4ct",
+          "commit": {
+            "abbreviatedOid": "f57599d"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-18T20:39:08Z",
+          "updatedAt": "2024-11-18T20:39:08Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "I am ok with adding that flexibility and allowing L2 metrics to directly use L0 metrics. I will update the text in my next update.",
+              "createdAt": "2024-11-18T20:39:08Z",
+              "updatedAt": "2024-11-18T20:39:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6RqUq9",
+          "commit": {
+            "abbreviatedOid": "f57599d"
+          },
+          "author": "muzixing",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-18T21:41:41Z",
+          "updatedAt": "2024-11-18T21:41:41Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "it looks good to me. I learn from Sue and other experts in IETF that we should use simple and clear words in writing standards, because the purpose of a standard is to let people understand easily and implement it :)",
+              "createdAt": "2024-11-18T21:41:41Z",
+              "updatedAt": "2024-11-18T21:41:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6RqUxc",
+          "commit": {
+            "abbreviatedOid": "f57599d"
+          },
+          "author": "muzixing",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-18T21:41:54Z",
+          "updatedAt": "2024-11-18T21:41:54Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "ok, thanks!",
+              "createdAt": "2024-11-18T21:41:54Z",
+              "updatedAt": "2024-11-18T21:41:54Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
