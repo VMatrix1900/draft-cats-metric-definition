@@ -115,7 +115,7 @@ Regarding network-related information, the IPPM WG has defined various types of 
 
 ## Level 1: Normalized Metrics in Categories
 
-L1 metrics are organized into distinct categories, such as computing, networking, storage, and delay. Each L0 metric is classified into one of these categories. Within each category, a single L1 metric is computed using an *aggregation function* and normalized to a unitless score that represents the performance of a resource according to that category. Potential categories include:
+L1 metrics are organized into distinct categories, such as computing, networking, storage, and delay. Each L0 metric is classified into one of these categories. Within each category, a single L1 metric is computed using an *aggregation function* and normalized to a unitless score that represents the performance of the underlying resources according to that category. Potential categories include:
 
 - **Computing:** A normalized value derived from computing-related L0 metrics, such as CPU, GPU, and NPU metrics.
 
