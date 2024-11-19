@@ -102,7 +102,7 @@ Introducing a definition of metrics requires balancing the following trade-off: 
 
 Level 0 metrics encompass detailed, raw metrics, including but not limit to:
 
-- CPU: Clock Frequency, number of cores, boosted frequency, memory bandwidth, memory size, utilization ratio, core utilization ratio, Power Consumption.
+- CPU: Base Frequency, boosted frequency, number of cores, core utilization ratio, memory bandwidth, memory size, memory utilization ratio, power consumption.
 - GPU: Frequency, Number of Render Unit, Memory Bandwidth, Memory Size, Memory Utilization Ratio, Core Utilization Ratio, Power Consumption.
 - NPU: Computing Power, Utlization Ratio, Power Consumption.
 - Network: Bandwidth, Capacity, Throughput, TXBytes, RXBytes, HostBusUtilization.
