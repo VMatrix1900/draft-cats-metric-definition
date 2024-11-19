@@ -90,13 +90,13 @@ This document uses the following terms defined in {{!I-D.ietf-cats-framework}}:
 
 # Definition of Metrics
 
-Introducing a definition of metrics necessitates balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the protocol. Conversely, if the metrics are too coarse-grained, they may lack the necessary information to make informed decisions. To ensure scalability while providing sufficient detail for effective decision-making, we propose a definition of metrics that incorporates three levels of abstraction:
+Introducing a definition of metrics requires balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the protocol. Conversely, if the metrics are too coarse-grained, they may lack the necessary information to make informed decisions. To ensure scalability while providing sufficient detail for effective decision-making, we propose a definition of metrics that incorporates three levels of abstraction:
 
 - **Level 0 (L0): Raw metrics.** These metrics are presented without abstraction, with each metric using its own unit and format as defined by the underlying resource.
 
 - **Level 1 (L1): Normalized metrics in categories.** These metrics are derived by aggregating L0 metrics into multiple categories, such as network, computing, and storage. Each category is summarized with a single L1 metric by normalizing it into a value within a defined range of scores.
 
-- **Level 2 (L2): Fully normalized metric.** These metrics are derived by aggregating all the L1 metrics into a single L2 metric, which is then normalized into a value within a defined range of scores.
+- **Level 2 (L2): Fully normalized metric.** These metrics are derived by aggregating lower level metrics (L0 or L1) into a single L2 metric, which is then normalized into a value within a defined range of scores.
 
 ## Level 0: Raw Metrics
 
@@ -131,7 +131,7 @@ The L0 metrics, such as those defined in {{performance-metrics}}, {{?RFC9439}}, 
 
 ## Level 2: Fully Normalized Metric.
 
-The L2 metric is a single score value derived from L1 metrics using an aggregation function. Different implementations may employ different aggregation functions to characterize the overall performance of the underlying compute and communication resources. The definition of the L2 metric simplifies the complexity of collecting and distributing numerous lower-level metrics by consolidating them into a single, unified score.
+The L2 metric is a single score value derived from the lower level metrics (L0 or L1) using an aggregation function. Different implementations may employ different aggregation functions to characterize the overall performance of the underlying compute and communication resources. The definition of the L2 metric simplifies the complexity of collecting and distributing numerous lower-level metrics by consolidating them into a single, unified score.
 
 TODO: Some implementations may support configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the affection from the L1 or L0 metrics.
 
