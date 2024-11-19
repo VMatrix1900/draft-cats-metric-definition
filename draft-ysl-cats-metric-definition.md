@@ -102,11 +102,11 @@ Introducing a definition of metrics requires balancing the following trade-off: 
 
 Level 0 metrics encompass detailed, raw metrics, including but not limit to:
 
-- CPU: Base Frequency, boosted frequency, number of cores, core utilization ratio, memory bandwidth, memory size, memory utilization ratio, power consumption.
-- GPU: Frequency, Number of Render Unit, Memory Bandwidth, Memory Size, Memory Utilization Ratio, Core Utilization Ratio, Power Consumption.
-- NPU: Computing Power, Utlization Ratio, Power Consumption.
-- Network: Bandwidth, Capacity, Throughput, TXBytes, RXBytes, HostBusUtilization.
-- Storage: Available Space, Read Speed, Write Speed.
+- CPU: Base Frequency, boosted frequency, number of cores, core utilization, memory bandwidth, memory size, memory utilization, power consumption.
+- GPU: Frequency, number of render units, memory bandwidth, memory size, memory utilization, core utilization, power consumption.
+- NPU: Computing power, utilization, power consumption.
+- Network: Bandwidth, capacity, throughput, transmit bytes, receive bytes, host bus utilization.
+- Storage: Available space, read speed, write speed.
 - Delay: Time taken to process a request.
 
 L0 metrics can be encoded into an Application Programming Interface (API), such as a RESTful API, and can be solution-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).
