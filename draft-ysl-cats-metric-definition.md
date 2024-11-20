@@ -74,7 +74,7 @@ Service providers are deploying computing capabilities across the network for ho
 
 CATS is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. To achieve this, CATS components (C-PS, C-Forwarders, etc.) require performance metrics for both communication and compute resources. Since these resources are deployed by multiple providers, standardized metrics are essential to ensure interoperability and enable precise traffic steering decisions, thereby optimizing resource utilization and enhancing overall system performance.
 
-Various considerations for metric definition are proposed in {{?I-D.du-cats-computing-modeling-description}}, which are useful for defining computing metrics. This document categorizes the relevant computing metrics for CATS into three levels based on their complexity and granularity, following the considerations outlined in {{?I-D.du-cats-computing-modeling-description}}.
+Various considerations for metric definition are proposed in {{?I-D.du-cats-computing-modeling-description}}, which are useful for defining computing metrics. This document categorizes the relevant compute and network metrics for CATS into three levels based on their complexity and granularity, following the considerations outlined in {{?I-D.du-cats-computing-modeling-description}}.
 
 # Conventions and Definitions
 
