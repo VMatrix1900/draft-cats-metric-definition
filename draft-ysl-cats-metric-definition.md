@@ -137,9 +137,6 @@ TODO: Some implementations may support configuration of Ingress CATS-Forwarders 
 
 Figure 1 shows the logic of metrics in Level 0, Level 1, and Level 2.
 
-<!-- Comment JRG: I would like to suggest some changes to this diagram. Seems like M1 is repeated at level 0 and level 1, same for M2, M3, so this can be confusing. Also the words Raw are repeated for all boxes, which seems redudant. Same for the word Category. Also the edges seem unidirectional, from bottom to top, so we can add an arrow to reflect the direction. I am suggesting the following adjustments: -->
-
-
 ~~~
                                        +--------+
                             L2 Metric: |   M2   |
@@ -164,13 +161,32 @@ L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | (...)
 
 # Representation of Metrics
 
-This section includes the detailed representation of metrics. [RFC9439] gives a good way to show the representation of some network metrics which is used for network capabilities exposure to applications. This document further describes the representation of CATS metrics.
+The representation of metrics is a key component of the CATS architecture. It defines how metrics are encoded and transmitted over the network. The representation should be flexible enough to accommodate different types of metrics and their associated units and precisions.
+
+This section includes the detailed representation of the CATS metrics. The design follows similar principles used in other similar IETF specifications, such as the network performance metrics defined in {{?RFC9439}}.
+
+## Definition of CATS Metric
+
+A CATS metric is represented using a set of fields, each describing a property of the metric. The following fields are introduced:
+
+~~~
+- cats_metric:
+      - type: The type of CATS metric. Can be one of:
+      - format: The encoding format of the metric
+      - units: 
+            The units of this metric. 
+            Can be one of: mhz, ghz, byte, kbyte, mbyte, gbyte, bps, kbps, mbps, gbps, tbps, tflops. 
+            
+      source: The
+      value:
+~~~
+
 
 Basically, in each metric level and for each metric, there will be some common fields for representation, including metric type, unit, and precision.  Metric type is a label for network devices to recognize what the metric is. "unit" and "precision" are usually associated with the metric.  How many bits a metric occupies in protocols is also required.
 
-Beyond these basic representations, the source of the metrics must also be declared, since there are multiple levels of metrics and their sources are different.  As defined in [RFC9439], there are three cost-sources, nominal, sla, and estimation.  This document further divide the estimation type into three sub-types, direct measurement, aggregation, and normalization, since different levels of metrics require different sources to acquire CATS metrics.  Directly measured metrics have physical meanings and units without any processing. Aggregated metrics can be either physically meaningful or not, and they maintain their meanings compared to the directly measured metrics.  Normalized metrics can have physical meanings or not, but they do not have units, and they are just numbers that used for routing decision making.
+Beyond these basic representations, the source of the metrics must also be declared, since there are multiple levels of metrics and their sources are different.  As defined in {{?RFC9439}}, there are three cost-sources, nominal, sla, and estimation.  This document further divide the estimation type into three sub-types, direct measurement, aggregation, and normalization, since different levels of metrics require different sources to acquire CATS metrics.  Directly measured metrics have physical meanings and units without any processing. Aggregated metrics can be either physically meaningful or not, and they maintain their meanings compared to the directly measured metrics.  Normalized metrics can have physical meanings or not, but they do not have units, and they are just numbers that used for routing decision making.
 
-To be more fine-grained, this document refers to the definition of [RFC9439]  on the metrics statistics.
+To be more fine-grained, this document refers to the definition of {{?RFC9439}}  on the metrics statistics.
 
 ## Level 0 Metric Representation
 
@@ -268,7 +284,7 @@ The sources of L0 metrics can be nominal, directly measured, or aggregated.  Nom
    providers.  Dynamic L0 metrics are measured and updated during service stage.  L0 metrics also support aggregation, in case that
    there are multiple service instances.
 
-The statistics of L0 metrics will follow the definition of Section 3.2 of [RFC9439].
+The statistics of L0 metrics will follow the definition of Section 3.2 of {{?RFC9439}}.
 
 ## Level 1 Metric Representation
 
