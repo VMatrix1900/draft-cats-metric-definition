@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-21T00:37:59.716900+00:00",
+  "timestamp": "2024-11-24T00:41:33.973792+00:00",
   "repo": "VMatrix1900/draft-cats-metric-definition",
   "labels": [
     {
@@ -462,24 +462,26 @@
       "id": "PR_kwDOMTaH-s6CR-zR",
       "title": "JRG: revisision of text up to section 3",
       "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/pull/8",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I made an initial partial revision of the draft, up to Section 3. Please feel free to comment further. I plan to continue reviewing the rest of the sections. Thanks.",
       "createdAt": "2024-11-18T17:49:05Z",
-      "updatedAt": "2024-11-20T09:10:51Z",
+      "updatedAt": "2024-11-22T05:35:00Z",
       "baseRepository": "VMatrix1900/draft-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "dd13c0eec3c0e0bc2339bb83565ad11cac9af77d",
       "headRepository": "giralt/draft-cats-metric-definition",
       "headRefName": "JRG-rev-20241118",
       "headRefOid": "5bba78918b1bcea6446906614f155de96b943296",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-11-22T05:34:59Z",
+      "mergedAt": "2024-11-22T05:34:59Z",
+      "mergedBy": "giralt",
+      "mergeCommit": {
+        "oid": "95ae990c2abdb44b3aaecdbfd2e79d57e8e54f82"
+      },
       "comments": [
         {
           "author": "giralt",
@@ -501,6 +503,20 @@
           "body": "LGTM, we can merge this PR\r\n",
           "createdAt": "2024-11-19T09:51:07Z",
           "updatedAt": "2024-11-19T09:51:07Z"
+        },
+        {
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi all, it looks like this PR is completed and some of you have already approved it. Can I close it?\r\n\r\nAlso, today I can submit this new version to the datatracker. Thanks.",
+          "createdAt": "2024-11-21T09:08:24Z",
+          "updatedAt": "2024-11-21T09:08:24Z"
+        },
+        {
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> LGTM, we can merge this PR\r\n\r\nBased on this, and that all comments have been resolved, I am closing/merging this PR.",
+          "createdAt": "2024-11-22T05:34:51Z",
+          "updatedAt": "2024-11-22T05:34:51Z"
         }
       ],
       "reviews": [
