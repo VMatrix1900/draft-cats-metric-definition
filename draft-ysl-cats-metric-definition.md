@@ -147,13 +147,13 @@ Figure 1 shows the logic of metrics in Level 0, Level 1, and Level 2.
                          +-----------------+---------------+
                          |                 |               |
                      +---+----+        +---+----+      +---+----+
-         L1 Metrics: |  M1-1  |        |  M1-2  |      |  M1-3  | (...)
+         L1 Metrics: |  M1-1  |        |  M1-2  |      |  M1-3  | ...
                      +---^----+        +---^----+      +----^---+
                          |                 |                |
               +--------+-+-------+       +-+-------+        |
               |        |         |       |         |        |
            +--+---+ +--+---+ +---+--+ +--+---+ +---+--+  +--+---+
-L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | (...)
+L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | ...
            +------+ +------+ +------+ +------+ +------+  +------+
 
 ~~~
@@ -175,11 +175,17 @@ A CATS metric is represented using a set of fields, each describing a property o
       - cats_metric:
             - type:
                   The type of the CATS metric.
-                  Examples: compute_cpu, storage_disk_size, network_bw,
-                  compute_delay, network_delay, compute_norm, storage_norm,
-                  network_norm, delay_norm.
-            - format_std (optional): 
-                  The standard used to encode and decode the value field according to the format field. This field is optional and only required if the value field is encoded using a standard, and knowing the standard is necessary to decode the value field.
+                  Examples: compute_cpu, storage_disk_size,
+                  network_bw, compute_delay, network_delay,
+                  compute_norm, storage_norm, network_norm,
+                  delay_norm.
+            - format_std (optional):
+                  The standard used to encode and decode the
+                  value field according to the format field.
+                  This field is optional and only required
+                  if the value field is encoded using a
+                  standard, and knowing the standard is
+                  necessary to decode the value field.
                   Example: ieee_754, ascii.
             - format:
                   The encoding format of the metric.
@@ -189,11 +195,12 @@ A CATS metric is represented using a set of fields, each describing a property o
                   Examples: 4, 8, 16, 32, 64.
             - units:
                   The units of this metric.
-                  Examples: mhz, ghz, byte, kbyte, mbyte, gbyte, bps, kbps,
-                  mbps, gbps, tbps, tflops, none.
+                  Examples: mhz, ghz, byte, kbyte, mbyte,
+                  gbyte, bps, kbps, mbps, gbps, tbps, tflops, none.
             - source (optional):
                   The source of information used to obtain.
-                  Examples: nominal, estimation, normalization, aggregation.
+                  Examples: nominal, estimation, normalization,
+                  aggregation.
             - level:
                   The level this metric belongs to.
                   Examples: L0, L1, L2.
