@@ -160,7 +160,6 @@ L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | ...
 {: #fig-metric-levels title="Logic of CATS Metrics in levels"}
 
 
-
 # Representation of Metrics
 
 The representation of metrics is a key component of the CATS architecture. It defines how metrics are encoded and transmitted over the network. The representation should be flexible enough to accommodate different types of metrics and their associated units and precisions.
@@ -171,42 +170,41 @@ This section includes the detailed representation of the CATS metrics. The desig
 
 A CATS metric is represented using a set of fields, each describing a property of the metric. The following fields are introduced:
 
+<!-- JRG Note and TODO: Define each of the types, formats, etc.. Do we need to standardize them? -->
 ~~~
-      - cats_metric:
-            - type:
-                  The type of the CATS metric.
-                  Examples: compute_cpu, storage_disk_size,
-                  network_bw, compute_delay, network_delay,
-                  compute_norm, storage_norm, network_norm,
-                  delay_norm.
-            - format_std (optional):
-                  The standard used to encode and decode the
-                  value field according to the format field.
-                  This field is optional and only required
-                  if the value field is encoded using a
-                  standard, and knowing the standard is
-                  necessary to decode the value field.
-                  Example: ieee_754, ascii.
-            - format:
-                  The encoding format of the metric.
-                  Examples: int, float.
-            - length:
-                  The size of the value field measured in octets.
-                  Examples: 4, 8, 16, 32, 64.
-            - units:
-                  The units of this metric.
-                  Examples: mhz, ghz, byte, kbyte, mbyte,
-                  gbyte, bps, kbps, mbps, gbps, tbps, tflops, none.
-            - source (optional):
-                  The source of information used to obtain.
-                  Examples: nominal, estimation, normalization,
-                  aggregation.
-            - level:
-                  The level this metric belongs to.
-                  Examples: L0, L1, L2.
-            - value:
-                  The value of this metric.
-                  Examples: 12, 3.2.
+- cats_metric:
+      - type:
+            The type of the CATS metric.
+            Examples: compute_cpu, storage_disk_size, network_bw,
+            compute_delay, network_delay, compute_norm,
+            storage_norm, network_norm, delay_norm.
+      - format_std (optional):
+            The standard used to encode and decode the value
+            field according to the format field. This field is
+            optional and only required if the value field is
+            encoded using a standard, and knowing the standard
+            is necessary to decode the value field.
+            Example: ieee_754, ascii.
+      - format:
+            The encoding format of the metric.
+            Examples: int, float.
+      - length:
+            The size of the value field measured in octets.
+            Examples: 4, 8, 16, 32, 64.
+      - units:
+            The units of this metric.
+            Examples: mhz, ghz, byte, kbyte, mbyte,
+            gbyte, bps, kbps, mbps, gbps, tbps, tflops, none.
+      - source (optional):
+            The source of information used to obtain.
+            Examples: nominal, estimation, normalization,
+            aggregation.
+      - level:
+            The level this metric belongs to.
+            Examples: L0, L1, L2.
+      - value:
+            The value of this metric.
+            Examples: 12, 3.2.
 ~~~
 {: #fig-metric-def title="CATS Metric Definition"}
 
