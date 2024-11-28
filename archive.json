@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-26T00:38:29.978248+00:00",
+  "timestamp": "2024-11-28T00:38:56.296259+00:00",
   "repo": "VMatrix1900/draft-cats-metric-definition",
   "labels": [
     {
@@ -898,6 +898,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOMTaH-s6DIYIw",
+      "title": "Jrg rev 20241122",
+      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/pull/12",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-26T05:31:58Z",
+      "updatedAt": "2024-11-26T05:55:09Z",
+      "baseRepository": "VMatrix1900/draft-cats-metric-definition",
+      "baseRefName": "main",
+      "baseRefOid": "95ae990c2abdb44b3aaecdbfd2e79d57e8e54f82",
+      "headRepository": "giralt/draft-cats-metric-definition",
+      "headRefName": "JRG-rev-20241122",
+      "headRefOid": "cea8fda37c05a5272298a7610914cee11e874509",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
