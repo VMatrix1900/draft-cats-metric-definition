@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-03T00:40:35.191176+00:00",
+  "timestamp": "2024-12-05T00:40:00.575996+00:00",
   "repo": "VMatrix1900/draft-cats-metric-definition",
   "labels": [
     {
@@ -422,7 +422,7 @@
       "labels": [],
       "body": "Hi co-authors,\r\n\r\nI find that no matter ALTO cost metrics or IGP cost metrics, they all have IANA registries. \r\nSince CATS metrics are newly proposed and may further be officially referred by other SDOs like 3GPP, ORAN, etc.\r\n\r\nI'm thinking if we could ask CATS AD and chairs to change the type of our draft to be standard track before adoption, and also maybe we should add some text in IANA considerations and apply for IANA registries when these metrics are stable.\r\n\r\nHow do you think?\r\n\r\nKehan",
       "createdAt": "2024-11-20T06:09:57Z",
-      "updatedAt": "2024-11-25T21:52:58Z",
+      "updatedAt": "2024-12-04T17:06:07Z",
       "closedAt": null,
       "comments": [
         {
@@ -459,6 +459,13 @@
           "body": "Hi Kehan, all:\r\n\r\nAre you thinking that we should have IANA registries for fields in L0, L1 or L2 metrics? Could you show an example here so we can discuss in more concrete terms the approach? thanks!",
           "createdAt": "2024-11-25T21:52:56Z",
           "updatedAt": "2024-11-25T21:52:56Z"
+        },
+        {
+          "author": "muzixing",
+          "authorAssociation": "NONE",
+          "body": "IANA may only focus on the Categories of L1 metrics, and only one L2 metric. MUST not define any IANA registries for L0 metrics.",
+          "createdAt": "2024-12-04T17:06:06Z",
+          "updatedAt": "2024-12-04T17:06:06Z"
         }
       ]
     }
