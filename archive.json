@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-10T00:40:35.078496+00:00",
+  "timestamp": "2024-12-12T00:39:50.816110+00:00",
   "repo": "VMatrix1900/draft-cats-metric-definition",
   "labels": [
     {
@@ -918,7 +918,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-26T05:31:58Z",
-      "updatedAt": "2024-11-26T05:55:09Z",
+      "updatedAt": "2024-12-10T13:13:47Z",
       "baseRepository": "VMatrix1900/draft-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "95ae990c2abdb44b3aaecdbfd2e79d57e8e54f82",
@@ -930,7 +930,52 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOMTaH-s6Ui3uA",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T12:22:19Z",
+          "updatedAt": "2024-12-10T13:13:47Z",
+          "comments": [
+            {
+              "originalPosition": 89,
+              "body": "I think there are some differences between nominal and direct measurement. From my side, nominal is kind of static values that can be pre settled or given by providers, for example, bandwidth. direct measurement refers to dynamic values which might change over time during computing service scheduling, for example, delay. ",
+              "createdAt": "2024-12-10T12:22:19Z",
+              "updatedAt": "2024-12-10T13:13:47Z"
+            },
+            {
+              "originalPosition": 91,
+              "body": "It makes sense.  Agree to delete SLA in this draft. ",
+              "createdAt": "2024-12-10T12:24:05Z",
+              "updatedAt": "2024-12-10T13:13:47Z"
+            },
+            {
+              "originalPosition": 124,
+              "body": "Hi Jordi, can you please give an example on how to use this untiless L0 score for deriving L1 & L2 metrics? This metric should have physical meanings, right? Otherwise the component which implements the normalization algorithms will not know how it can use this metric.",
+              "createdAt": "2024-12-10T12:59:08Z",
+              "updatedAt": "2024-12-10T13:13:47Z"
+            },
+            {
+              "originalPosition": 4,
+              "body": "Should we provide normalization functions in this draft?",
+              "createdAt": "2024-12-10T13:01:34Z",
+              "updatedAt": "2024-12-10T13:13:47Z"
+            },
+            {
+              "originalPosition": 51,
+              "body": "The fields and examples below looks good to me.  \r\nFor the question on whether to standardize them, it looks like L1 and L2 metrics also need these fields for representation.  So maybe we should standardize them, And also it relates to where the normalization should be implemented. If it's implemented in the CATS domain, then these fields should be recognized and propagated.  Look for more feedback.",
+              "createdAt": "2024-12-10T13:13:10Z",
+              "updatedAt": "2024-12-10T13:13:47Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
